@@ -364,7 +364,7 @@ describe("Safe", async () => {
             const signerSafeSig = buildContractSignature(signerSafe.address, signerSafeOwnerSignature.data);
 
             const signatures = buildSignatureBytes([
-                await safeApproveHash(user1, safe, tx, true),
+                await safeApproveHash(user1, safe, tx),
                 await safeApproveHash(user4, safe, tx),
                 await safeSignTypedData(user2, safe, tx),
                 await safeSignTypedData(user3, safe, tx),
@@ -483,7 +483,7 @@ describe("Safe", async () => {
             const signerSafeSig = buildContractSignature(signerSafe.address, signerSafeOwnerSignature.data);
 
             const signatures = buildSignatureBytes([
-                await safeApproveHash(user1, safe, tx, true),
+                await safeApproveHash(user1, safe, tx),
                 await safeApproveHash(user4, safe, tx),
                 await safeSignTypedData(user2, safe, tx),
                 await safeSignTypedData(user3, safe, tx),
@@ -521,7 +521,7 @@ describe("Safe", async () => {
             const txHashData = preimageSafeTransactionHash(safe, tx, await chainId());
             const txHash = calculateSafeTransactionHash(safe, tx, await chainId());
             const signatures = buildSignatureBytes([
-                await safeApproveHash(user1, safe, tx, true),
+                await safeApproveHash(user1, safe, tx),
                 await safeApproveHash(user4, safe, tx),
                 await safeSignTypedData(user2, safe, tx),
             ]);
