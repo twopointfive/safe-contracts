@@ -27,7 +27,7 @@ contract ButterSafe is Safe {
     // Mapping to keep track of wallet nonces
     mapping(address => uint256) public nonces;
 
-    bool public ownerWithdrawal = true;
+    bool public ownerWithdrawal = false;
 
     // keccak256(
     //   "OutWithdrawal(address to,address asset,uint256 assetType,uint256 tokenId,uint256 amount,uint256 nonce,uint256 expiry)"
