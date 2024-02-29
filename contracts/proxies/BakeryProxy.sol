@@ -6,13 +6,28 @@ interface IProxy {
     function masterCopy() external view returns (address);
 }
 
+interface IBlast{
+    // base configuration options
+    function configureClaimableYield() external;
+    function configureClaimableGas() external;
+    function configureGovernor(address _gov) external;
+}
+
+interface IBlastPoints {
+    function configurePointsOperator(address operator) external;
+}
+
 contract BakeryProxy {
     address internal singleton;
     address internal proxyOwner;
 
-    constructor(address _singleton) {
+    constructor(address _singleton, address _proxyOwner, address blastPoint, address _op, address _gov) {
         singleton = _singleton;
-        proxyOwner = msg.sender;
+        proxyOwner = _proxyOwner;
+        IBlastPoints(blastPoint).configurePointsOperator(_op);
+        IBlast(blastPoint).configureClaimableYield() ;
+        IBlast(blastPoint).configureClaimableGas();
+        IBlast(blastPoint).configureGovernor(_gov);
     }
 
     function upgrade(address _singleton) external {
